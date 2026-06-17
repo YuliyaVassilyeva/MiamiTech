@@ -9,6 +9,7 @@ create table if not exists public.submissions (
   phone text not null,
   social text not null,          -- LinkedIn or Instagram
   chat_type text not null check (chat_type in ('virtual', 'in_person')),
+  preferred_times text,
   notes text,
   amount integer not null,        -- cents (10000 = $100, 15000 = $150)
   payment_status text not null default 'pending'

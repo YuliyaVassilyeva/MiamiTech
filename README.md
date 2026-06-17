@@ -13,13 +13,15 @@ Visitors submit their details and book a coffee chat — **virtual ($100)** or
 
 ## How it works
 
-1. Visitor fills the form (name, email, phone, LinkedIn/Instagram, chat type).
+1. Visitor fills the form (name, email, phone, LinkedIn/Instagram, chat type,
+   and optional preferred times).
 2. `POST /api/checkout` saves the submission to Supabase (`payment_status: pending`)
    and creates a Stripe Checkout session.
 3. Visitor pays on Stripe and is redirected to `/success`.
 4. `/api/webhook` (Stripe) flips `payment_status` to `paid`.
-5. The success page sends them to your Cal.com/Calendly link to schedule —
-   connect that to your Apple/iCloud calendar so bookings hit your iPhone.
+5. Scheduling is manual: the success page tells the visitor you'll email them to
+   set a time, and you'll see their preferred times in the Supabase table.
+   (Optional: set `NEXT_PUBLIC_BOOKING_URL` to instead send them to a booking link.)
 
 ## Setup
 
@@ -49,7 +51,7 @@ cp .env.example .env.local
 | `STRIPE_SECRET_KEY` | Stripe → Developers → API keys |
 | `STRIPE_WEBHOOK_SECRET` | Stripe → Developers → Webhooks (endpoint `/api/webhook`) |
 | `NEXT_PUBLIC_SITE_URL` | Your deployed URL |
-| `NEXT_PUBLIC_BOOKING_URL` | Your Cal.com / Calendly booking link |
+| `NEXT_PUBLIC_BOOKING_URL` | *(optional)* booking link; leave unset for manual scheduling |
 
 ### 4. Run
 

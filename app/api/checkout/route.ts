@@ -10,6 +10,7 @@ type Payload = {
   phone?: string;
   social?: string;
   chatType?: string;
+  preferredTimes?: string;
   notes?: string;
 };
 
@@ -29,6 +30,7 @@ export async function POST(req: NextRequest) {
   const email = (body.email || "").trim();
   const phone = (body.phone || "").trim();
   const social = (body.social || "").trim();
+  const preferredTimes = (body.preferredTimes || "").trim();
   const notes = (body.notes || "").trim();
   const chatType = body.chatType as ChatType;
 
@@ -70,6 +72,7 @@ export async function POST(req: NextRequest) {
         phone,
         social,
         chat_type: chatType,
+        preferred_times: preferredTimes || null,
         notes: notes || null,
         amount: pricing.amount,
         payment_status: "pending",

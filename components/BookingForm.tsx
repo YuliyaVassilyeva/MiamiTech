@@ -42,6 +42,7 @@ export default function BookingForm() {
       phone: String(data.get("phone") || "").trim(),
       social: String(data.get("social") || "").trim(),
       chatType,
+      preferredTimes: String(data.get("preferredTimes") || "").trim(),
       notes: String(data.get("notes") || "").trim(),
     };
 
@@ -128,6 +129,22 @@ export default function BookingForm() {
           required
           placeholder="linkedin.com/in/you  ·  @you"
         />
+        <div>
+          <label
+            htmlFor="preferredTimes"
+            className="mb-1 block text-sm font-semibold text-deep"
+          >
+            Preferred days / times{" "}
+            <span className="text-deep/40">(optional)</span>
+          </label>
+          <textarea
+            id="preferredTimes"
+            name="preferredTimes"
+            rows={2}
+            placeholder="e.g. weekday mornings, or Tue/Thu after 3pm ET"
+            className="w-full rounded-xl border border-black/10 px-4 py-3 text-deep outline-none transition focus:border-coral focus:ring-2 focus:ring-coral/30"
+          />
+        </div>
         <div>
           <label
             htmlFor="notes"
